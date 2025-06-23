@@ -1,20 +1,9 @@
 const { createServer } = require('node:http');
+const listProducts = require("./routes/products");
+
 
 const host = 'localhost';
 const port = 3000;
-
-const products = [
-    {
-        id: 1,
-        name: "chinela",
-        price: 39.99
-    },
-    {
-        id: 2,
-        name: "alpercata",
-        price: 99.90
-    }
-];
 
 const server = createServer((request, response) => {
 
@@ -26,8 +15,11 @@ const server = createServer((request, response) => {
     }
        
     if(url == "/products"){
+
+        const data = listProducts();
+
         response.writeHead(200, { 'Content-type': 'application/json'});
-        return response.end(JSON.stringify(products));
+        return response.end(JSON.stringify(data));
     } 
 
     if(url == "/products/add"){
