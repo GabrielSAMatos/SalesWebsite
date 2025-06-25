@@ -1,11 +1,25 @@
 const { createServer } = require('node:http');
-const listProducts = require("./routes/products");
+const { listProducts, addProducts, remProducts, editProducts }  = require("./routes/products");
 
 
 const host = 'localhost';
 const port = 3000;
+const products = [
+    {
+        id: 1,
+        name: "chinela",
+        price: 39.99
+    },
+    {
+        id: 2,
+        name: "alpercata",
+        price: 99.90
+    }
+];
 
 const server = createServer((request, response) => {
+   
+
 
     const { url, method } = request;
 
@@ -16,29 +30,35 @@ const server = createServer((request, response) => {
        
     if(url == "/products"){
 
-        const data = listProducts();
+        const data = listProducts(products);
 
         response.writeHead(200, { 'Content-type': 'application/json'});
         return response.end(JSON.stringify(data));
     } 
 
     if(url == "/products/add"){
-        products.push({
-            id: 3,
-            name: "ventilador",
-            price: 200.00
-        });
+        addProducts(products);
 
         response.writeHead(200, { 'Content-type': 'text/plain'});
         return response.end("Product added.");
     } 
 
     if(url == "/products/rem"){
-        products.pop();
+
+        remProducts(products);
+
         response.writeHead(200, { 'Content-type': 'text/plain'});
         return response.end("Product removed.");
     } 
 
+    if(url == "/products/edit"){
+
+        editProducts(products, 3, "awdikopwaeopid09u3290u8od32d32");
+
+        response.writeHead(200, { 'Content-type': 'text/plain'});
+        return response.end("Product edited.");
+    } 
+    
     response.writeHead(404, { 'Content-type': 'text/plain'});
     return response.end("not found.");
 

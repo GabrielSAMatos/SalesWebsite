@@ -1,33 +1,26 @@
-function listProducts(){
-    
-    const products = [
-        {
-            id: 1,
-            name: "chinela",
-            price: 39.99
-        },
-        {
-            id: 2,
-            name: "alpercata",
-            price: 99.90
-        }
-    ];
-    
+function listProducts(products){
     return products;
 }
 
 
-function addProducts(){
-    
+function addProducts(products){
+    products.push({
+        id: 3,
+        name: "ventilador",
+        price: 200.00
+    });
 }
 
-function remProducts(){
-    
+function remProducts(products){
+    products.pop(); 
 }
 
-function editProducts(){
-    
+function editProducts(products, productID, productName){
+    for(const element of products){
+        if(productID === element.id){
+            element.name = productName;
+        }
+    }
 }
 
-
-module.exports = listProducts;
+module.exports = { listProducts, addProducts, remProducts, editProducts };
