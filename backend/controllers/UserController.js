@@ -1,26 +1,30 @@
 const UserModel = require('../models/UsersModel');
 
-const userModel = new UserModel();
-
 class UserController{
-    findAll(){
-        return userModel.findAll();
+    findAll(req, res){
+        const data = UserModel.findAll();
+        return res.json(data);
     }
 
-    findByID(){
-        return userModel.findByID();
+    findByID(req, res){
+        return UserModel.findByID();
     }
 
-    create(){
-        return userModel.create();
+    create(req, res){
+        const body = req.body;
+        UserModel.create(body);
+
+        return res.status(200).json({
+            message: "User registred successfully."
+        });
     }
 
-    update(){
-        return userModel.update();
+    update(req, res){
+        return UserModel.update();
     }
 
-    delete(){
-        return userModel.delete();
+    delete(req, res){
+        return UserModel.delete();
     }
 }
 

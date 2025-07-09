@@ -1,21 +1,33 @@
 class UserModel{
-    findAll(){
-        
+
+    static list = [
+        {
+            name: 'Gabriel',
+            surname: 'Matos'
+        },
+        {
+            name: 'Matos',
+            surname: 'Online'
+        }
+    ];
+
+    static findAll(){
+        return UserModel.list;
     }
 
-    findByID(){
+    static findByID(){
 
     }
 
-    create(){
+    static create(body){
+        UserModel.list.push(body);
+    }
+
+    static update(){
 
     }
 
-    update(){
-
-    }
-
-    delete(){
+    static delete(){
 
     }
 }
