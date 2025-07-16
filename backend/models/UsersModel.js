@@ -8,27 +8,38 @@ class UserModel{
         {
             name: 'Matos',
             surname: 'Online'
+        },
+        {
+            name: 'wadwadwa',
+            surname: 'wadwada'
         }
     ];
+
 
     static findAll(){
         return UserModel.list;
     }
 
-    static findByID(){
-
+    static findByID(id){
+        return UserModel.list[id-1];
     }
 
     static create(body){
         UserModel.list.push(body);
     }
 
-    static update(){
-
+    static update(id, body){
+        UserModel.list[id-1] = body;
     }
 
-    static delete(){
-
+    static delete(id){
+        const listAux = [];
+        for(let i = 0; i < UserModel.list.length; i++){
+            if(i != id-1){
+                listAux.push(UserModel.list[i]);
+            }
+        }
+        UserModel.list = listAux;
     }
 }
 
