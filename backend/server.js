@@ -1,5 +1,6 @@
 const express = require('express');
 const UsersRoutes = require('./routes/UsersRoutes');
+const PostsRoutes = require('./routes/PostsRoutes');
 
 const app = express();
 app.use(express.json());
@@ -17,5 +18,6 @@ app.post('/test/:codig', (req, res) => {
 });
 
 app.use(UsersRoutes);
+app.use(PostsRoutes);
 
 app.listen(3000);
